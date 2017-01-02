@@ -1,17 +1,25 @@
 const initialState = {
   loggedIn: false,
   token: null,
-  user:{}
+  user: {},
 };
 
-export default function (state = initialState, action) {
+export default (state = initialState, action) => {
   switch (action.type) {
     case 'LOGGED_IN':
-      return { ...state, loggedIn:true, token: action.token, user: action.user }
+      return {
+        ...state,
+        loggedIn: true,
+        token: action.token,
+        user: action.user,
+      };
     case 'LOGIN_FAILED':
-      return { ...state, loggedIn: false}
+      return {
+        ...state,
+        loggedIn: false,
+      };
 
     default:
-    return state;
+      return state;
   }
-}
+};

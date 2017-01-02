@@ -4,25 +4,22 @@ import * as api from './api';
 const getToken = () => !!localStorage.getItem('token');
 
 export const isLoggedIn = () => {
-  return !!this.getToken();
+  return getToken();
 };
 
 export const login = (user) => {
   return new Promise((resolve, reject) => {
-      if(this.isLoggedIn()) {
-        return resolve(this.getToken());
+    if (this.isLoggedIn()) {
+      resolve(this.getToken());
+    }
+
+    api.post('user/login', user).then((response) => {
+      if (response && response.jwtToken) {
+        localStorage.setItem('token', response.jwtToken);
+        resolve(response);
       }
-
-      api.post('user/login')
-        .then((response) => {
-          if(response && response.jwtToken) {
-            localStorage.setItem('token', response.jwtToken)
-            return resolve(response);
-          }
-        })
-        .catch((error) => {
-          return reject(error);
-        });
-
+    }).catch((error) => {
+      reject(error);
+    });
   });
 };

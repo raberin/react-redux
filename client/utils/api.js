@@ -4,20 +4,19 @@ import config from '../../server/config';
 
 const apiUrl = config.apiUrl;
 
-export function get(endpoint, params) {};
+// export function get(endpoint, params) {};
 
-export function post(endpoint, data) {
+export const post = (endpoint, data) => {
   return axios({
     url: apiUrl + endpoint,
     method: 'post',
     responseType: 'json',
-    data: data
+    data,
   })
-    .then(function(response) {
-      return response
+    .then((response) => {
+      return response;
     })
-    .catch(function(error){
-      return error
-    })
-
+    .catch((error) => {
+      return error;
+    });
 };
