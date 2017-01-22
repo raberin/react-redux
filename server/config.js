@@ -1,5 +1,5 @@
 const config = {
-  apiUrl: process.env.NODE_ENV === 'development' ? 'http://localhost:8082/api/' : 'https://production.gonitely.com/api/',
+  apiUrl: process.env.NODE_ENV === 'development' ? 'http://localhost:8082/api/' : 'http://productionapi.com',
   port: process.env.PORT || 8000,
 };
 
