@@ -45,6 +45,9 @@ module.exports = {
         include: /node_modules/,
         loaders: ['style-loader', 'css-loader'],
       }, {
+        test: /\.scss$/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
+      }, {
         test: /\.jsx*$/,
         exclude: [/node_modules/, /.+\.config.js/],
         loader: 'babel'
@@ -54,8 +57,7 @@ module.exports = {
       }, {
         test: /\.json$/,
         loader: 'json-loader',
-      },
-      {
+      },{
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
         loader: 'url-loader?limit=100000',
       },

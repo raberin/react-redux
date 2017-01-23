@@ -1,31 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { login } from '../../actions';
 
-class LoginPage extends Component {
+class RegisterPage extends Component {
   static propTypes = {
-    actions: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
-    this.state = {
-      role: 'manager',
-    };
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleRoleChange = this.handleRoleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleRoleChange(event, index, role) {
-    this.setState({ role });
-  }
-  handleLogin(event) {
+  handleSubmit(event) {
     event.preventDefault();
-    const email = this.refs.email.getValue();
-    const password = this.refs.password.getValue();
-    const { role } = this.state;
-    this.props.actions.login({ email, password, role });
+    // register task
   }
 
   render() {
@@ -52,16 +40,8 @@ class LoginPage extends Component {
 
 // Which props do we want to inject, given the global state?
 const mapStateToProps = (state) => {
-  return { data: state.auth };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    actions: bindActionCreators({
-      login,
-    }, dispatch),
-  };
+  return { data: state };
 };
 
 // Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps)(RegisterPage);

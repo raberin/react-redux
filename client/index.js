@@ -4,15 +4,28 @@
 import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
+import { browserHistory } from 'react-router';
 import { AppContainer } from 'react-hot-loader';
 
-
 import App from './App';
+import * as auth from './utils/auth';
+import { loginSuccess } from './actions'
 import { configureStore } from './store/configureStore';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'toastr/toastr.scss';
 // Initialize store
 const store = configureStore(window.__INITIAL_STATE);
 
+if(auth.isLoggedIn()) {
+  // that means there is something in localStorage
+  let user = auth.getUser();
+  store.dispatch(loginSuccess(user));
+  // browserHistory.replace('/profile')
+}
+else {
+  browserHistory.replace('/login');
+}
 const mountApp = document.getElementById('root');
 
 render(

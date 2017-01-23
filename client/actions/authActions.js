@@ -1,27 +1,36 @@
-import auth from '../utils/auth';
+import * as auth from '../utils/auth';
+import { browserHistory } from 'react-router';
 
-function loggedIn(token) {
-  return {
-    type: 'LOGGED_IN',
-    token,
-  };
-}
+export const loginSuccess = (user) => {
+  return { type: 'LOGIN_SUCCESS', token: user.jwtToken, user };
+};
 
-function loginFail(error) {
-  return {
-    type: 'LOGIN_FAILED',
-    error,
-  };
-}
+const loginFail = error => {
+  return { type: 'LOGIN_FAILED', error };
+};
 
-export const login = (user) => {
+const logoutSuccess = () => {
+  return { type: 'LOGOUT_SUCCESS' };
+};
+
+export const login = (credentials) => {
   return (dispatch) => {
-    auth.login(user)
-      .then((response) => {
-        dispatch(loggedIn(response));
-      })
-      .catch((error) => {
-        dispatch(loginFail(error));
-      });
+    return auth.login(credentials).then((user) => {
+      dispatch(loginSuccess(user));
+      browserHistory.push('/profile');
+    }).catch((error) => {
+      dispatch(loginFail(error));
+    });
+  };
+};
+
+export const logout = () => {
+  return (dispatch) => {
+    return auth.logout().then(() => {
+      browserHistory.push('/login');
+      dispatch(logoutSuccess());
+    }).catch(() => {
+      // dispatch(logout(error));
+    });
   };
 };

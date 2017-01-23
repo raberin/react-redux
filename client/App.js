@@ -10,7 +10,6 @@ import routes from './routes';
 
 // Base stylesheet
 import './main.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const App = (props) => {
   return (
