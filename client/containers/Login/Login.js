@@ -22,8 +22,8 @@ class LoginPage extends Component {
   }
   handleLogin(event) {
     event.preventDefault();
-    const email = this.refs.email.getValue();
-    const password = this.refs.password.getValue();
+    const email = this.refs.email.value;
+    const password = this.refs.password.value;
     const { role } = this.state;
     this.props.actions.login({ email, password, role });
   }
@@ -32,7 +32,7 @@ class LoginPage extends Component {
     return (
       <div className="container">
         <div className="col-md-8 text-center">
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleLogin}>
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Email address</label>
               <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Email" ref="email" />

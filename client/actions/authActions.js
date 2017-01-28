@@ -17,7 +17,7 @@ export const login = (credentials) => {
   return (dispatch) => {
     return auth.login(credentials).then((user) => {
       dispatch(loginSuccess(user));
-      browserHistory.push('/profile');
+      browserHistory.push('/dashboard');
     }).catch((error) => {
       dispatch(loginFail(error));
     });
