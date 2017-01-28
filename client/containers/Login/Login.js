@@ -41,7 +41,7 @@ class LoginPage extends Component {
               <label htmlFor="exampleInputPassword1">Password</label>
               <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" ref="password" />
             </div>
-            <button type="submit" className="btn btn-default">Register</button>
+            <button type="submit" className="btn btn-default">Login</button>
           </form>
         </div>
 

@@ -2,17 +2,17 @@ import Promise from 'promise';
 import * as api from './api';
 
 export const setToken = (token) => {
-  localStorage.setItem('gonitely:token', token);
+  localStorage.setItem('token', token);
 };
 
 export const setUser = (user) => {
-  localStorage.setItem('gonitely:user', JSON.stringify(user));
+  localStorage.setItem('user', JSON.stringify(user));
 };
 
-export const getToken = () => localStorage.getItem('gonitely:token');
+export const getToken = () => localStorage.getItem('token');
 
 export const getUser = () => {
-  const user = localStorage.getItem('gonitely:user');
+  const user = localStorage.getItem('user');
   return JSON.parse(user);
 };
 
@@ -42,8 +42,8 @@ export const login = (user) => {
 export const logout = () => {
   return new Promise((resolve, reject) => {
     try {
-      localStorage.removeItem('gonitely:token');
-      localStorage.removeItem('gonitely:user');
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
       resolve(true);
     } catch (error) {
       reject(error);

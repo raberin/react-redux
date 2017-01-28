@@ -27,17 +27,6 @@ export default (state = initialState, action) => {
         token: null,
         user: {},
       };
-    case 'UPDATE_PROFILE_SUCCESS':
-      return {
-        ...state,
-        errorMessage: '',
-        user: action.user,
-      };
-    case 'UPDATE_PROFILE_FAIL':
-      return {
-        ...state,
-        errorMessage: action.errorMessage,
-      };
     default:
       return state;
   }
