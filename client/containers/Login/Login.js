@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { login } from '../../actions';
+import { FBLogin } from '../../components';
 
 class LoginPage extends Component {
   static propTypes = {
@@ -43,6 +44,11 @@ class LoginPage extends Component {
             </div>
             <button type="submit" className="btn btn-default">Login</button>
           </form>
+          <br />
+          {/*
+            uncomment this line for facebook login 
+            <FBLogin />
+          */}
         </div>
 
       </div>

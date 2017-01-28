@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as auth from './auth';
+import * as toastr from './toastr';
 
 import config from '../../server/config';
 /**
@@ -36,6 +37,13 @@ export const post = (endpoint, data) => {
       return response;
     })
     .catch((error) => {
-      return error;
+      if (error.response) {
+        // The request was made, but the server responded with a status code
+        // that falls out of the range of 2xx
+        toastr.error(error.response);
+      } else {
+
+        toastr.error('Error', error);
+      }
     });
 };
