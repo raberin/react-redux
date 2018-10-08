@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {chunk } from 'lodash';
 import {LoginForm} from '../../components';
 import { login } from '../../actions/authActions';
 
@@ -30,24 +29,6 @@ class Login extends PureComponent {
 
     render() {
         const { username, password, rememberme } = this.state;
-        const generalList = [
-            'television',
-            'washingMachine',
-            'elevator',
-            'heating',
-            'towelsAndSheets',
-            'balcony',
-            'iron',
-            'accessibility',
-            'telephone',
-            'safe',
-            'workingDesk',
-            'hairdryer',
-            'additionalbed',
-            'airconditioning',
-            'fireplace',
-            'dryer',
-          ];
         return (
             <div className="login-container">
                 <LoginForm onLogin={this.login} handleInputChange={this.handleInputChange} username={username} password={password} rememberme={rememberme} />
